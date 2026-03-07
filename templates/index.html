@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HW1: GridWorld</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="wrap">
+  <h1>HW1: GridWorld</h1>
+      <p class="lead">產生 n x n 格子，隨機策略顯示（箭頭）與策略評估 (Value Matrix)</p>
+
+      <div class="controls">
+        <label>Grid size (5–9): <input id="nInput" type="number" min="5" max="9" value="6"></label>
+        <button id="gen">Generate Grid</button>
+  <button id="randPolicy">Random Policy</button>
+  <button id="optPolicy">Optimal Policy</button>
+  <button id="eval">Evaluate Policy</button>
+        <button id="reset">Reset</button>
+        <div id="obsInfo" style="margin-left:12px;color:#374151;font-weight:600">Remaining obstacles: <span id="obsRemain">-</span></div>
+        <div id="modeContainer" style="margin-left:12px">
+          <label style="margin-right:8px"><input type="radio" name="mode" value="start" checked> Set Start</label>
+          <label style="margin-right:8px"><input type="radio" name="mode" value="end"> Set End</label>
+          <label style="margin-right:8px"><input type="radio" name="mode" value="obs"> Toggle Obstacle</label>
+          <label style="margin-right:8px"><input type="radio" name="mode" value="clear"> Clear</label>
+        </div>
+      </div>
+
+      <div class="matrices">
+        <div class="panel">
+          <h2>Value Matrix</h2>
+          <div id="value" class="matrix"></div>
+        </div>
+        <div class="panel">
+          <h2>Policy Matrix</h2>
+          <div id="policy" class="matrix"></div>
+        </div>
+      </div>
+
+      <p class="notes">操作說明：先點 Generate Grid，然後 Random Policy 即可看到箭頭；Evaluate Policy 會計算每格的 V(s)。點擊格子可切換 Start/End/Obstacle 模式（請用右側控制）。</p>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
