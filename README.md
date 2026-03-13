@@ -83,6 +83,8 @@ python app.py
 
 # 114-2 HW1 / HW2 — GridWorld
 
+Live demo (homework2): https://tonyyoung-create.github.io/114-2homework1/
+
 This repository contains the interactive GridWorld demo implemented for homework2. The authoritative project code and demo live under the `homework2/` folder. This README is the single, consolidated document for the project (it includes both root-level and folder-specific instructions).
 
 ## Quick start (recommended: Flask)
