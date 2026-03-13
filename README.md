@@ -236,11 +236,12 @@ Open http://localhost:8501.
 
 - `homework1/` was intentionally removed from tracked files and listed in `.gitignore` per prior decisions. If you need the original `homework1` files restored, provide a backup — they are not tracked in this repo's current history as normal files.
 
-## Want a public demo?
+## 公開示範 (選項)
 
-- I can publish the static demo to GitHub Pages (copy `homework2/docs/` to root `docs/` or push to `gh-pages`) or prepare and deploy the Streamlit app to Streamlit Cloud. Tell me which you prefer and I will perform the chosen publish steps.
+- 發佈到 GitHub Pages（靜態）：將 `homework2/docs/` 的內容複製到 repo 根的 `docs/` 並推送，或建立/更新 `gh-pages` 分支以發佈靜態站點。
+- 部署到 Streamlit Cloud（互動）：設定 App 檔為 `homework2/streamlit_app.py` 並使用 `homework2/requirements.txt` 進行部署。
 
 ---
 
-If you'd like any text changes (language style, shorter instructions, add a screenshot, or include exact Port/URL examples), tell me which edits and I'll update this README accordingly.
+若需文字調整（語言風格、簡化說明、加入截圖或明確 Port/URL 範例），請在專案中提出 issue 或 pull request，所需的修改會由維護流程處理。
 
