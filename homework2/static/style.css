@@ -24,23 +24,3 @@ button{background:var(--accent);color:white;border:none;padding:8px 12px;border-
 .notes{color:var(--muted);margin-top:12px}
 
 @media(max-width:900px){.matrices{flex-direction:column}}
-
-/* extras */
-.info-panel {box-shadow:none;padding:10px}
-.swatch{width:14px;height:14px;border-radius:3px;border:1px solid #e6e9ef}
-.start-swatch{background:#10b981}
-.term-swatch{background:#374151}
-.obs-swatch{background:#6b7280}
-.path-swatch{background:#f59e0b}
-
-.mcell.path{outline:3px solid rgba(245,158,11,0.25);box-shadow:0 4px 12px rgba(245,158,11,0.08)}
-.agent{background:#ef4444;color:white;box-shadow:0 8px 18px rgba(239,68,68,0.25);animation:agent-pulse 900ms infinite}
-@keyframes agent-pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
-
-.mcell.selfloop{outline:2px dashed #ef4444}
-
-.policy-arrow{font-size:18px}
-
-.info-panel h3{margin:0 0 8px}
-
-.extras{margin-top:10px}

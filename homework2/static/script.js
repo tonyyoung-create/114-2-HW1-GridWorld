@@ -166,63 +166,6 @@
         if(s2===s){ const nodes = valueEl.children[s]; if(nodes) nodes.classList.add('selfloop'); }
       }
     }
-    // clear existing path/agent markers
-    clearPathHighlights();
-  }
-
-  // highlight a path (array of cell indices)
-  function clearPathHighlights(){
-    const N = n*n; for(let i=0;i<N;i++){ const node = valueEl.children[i]; if(node) { node.classList.remove('path'); node.classList.remove('agent'); } }
-  }
-
-  function highlightPath(path){
-    clearPathHighlights();
-    for(const idx of path){ const node = valueEl.children[idx]; if(node) node.classList.add('path'); }
-  }
-
-  // compute path following current policy from start until terminal or loop / max steps
-  function computePathFromStart(){
-    if(start===null) return [];
-    const path = [];
-    const seen = new Set();
-    let cur = start; const maxSteps = n*n*2;
-    for(let step=0; step<maxSteps; step++){
-      if(seen.has(cur)) { break; }
-      path.push(cur); seen.add(cur);
-      if(cur===terminal) break;
-      const a = policy[cur]; if(!a) break;
-      const nxt = nextState(cur,a);
-      if(nxt===cur) break; // self-loop
-      cur = nxt;
-    }
-    return path;
-  }
-
-  // show optimal path in UI and path info
-  function showOptimalPath(){
-    const path = computePathFromStart();
-    if(path.length===0){ document.getElementById('pathList').textContent = '-'; alert('No path could be extracted from start using current policy.'); return; }
-    highlightPath(path);
-    document.getElementById('pathList').textContent = path.join(' → ');
-  }
-
-  // animate agent following policy from start
-  let animTimer = null;
-  async function animatePolicy(){
-    const path = computePathFromStart();
-    if(path.length===0){ alert('No path to animate (set start/compute optimal policy first).'); return; }
-    const speed = parseInt(document.getElementById('speed').value) || 400;
-    // step through path
-    for(let i=0;i<path.length;i++){
-      clearPathHighlights();
-      const idx = path[i]; const node = valueEl.children[idx]; if(node) node.classList.add('agent');
-      document.getElementById('pathList').textContent = path.slice(0,i+1).join(' → ');
-      // wait
-      await new Promise(r=>setTimeout(r, speed));
-    }
-    // leave final highlight
-    clearPathHighlights(); for(const idx of path) { const nnode = valueEl.children[idx]; if(nnode) nnode.classList.add('path'); }
-    const last = path[path.length-1]; const lastNode = valueEl.children[last]; if(lastNode) lastNode.classList.add('agent');
   }
 
   function updateObsInfo() {
@@ -398,12 +341,6 @@
   if (optBtn) optBtn.addEventListener('click', () => { computeOptimalPolicy(); });
   evalBtn.addEventListener('click', () => { evaluatePolicy(); });
   resetBtn.addEventListener('click', () => { createGrid(); });
-
-  // new controls: show path and animate
-  const showPathBtn = document.getElementById('showPath');
-  const animateBtn = document.getElementById('animate');
-  if(showPathBtn) showPathBtn.addEventListener('click', () => { showOptimalPath(); });
-  if(animateBtn) animateBtn.addEventListener('click', () => { animatePolicy(); });
 
   injectModeControls();
   createGrid();

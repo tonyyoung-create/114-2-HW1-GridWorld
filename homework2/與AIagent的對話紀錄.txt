@@ -41,22 +41,7 @@
 - `index_static.html`：靜態預覽，用於不啟動 Flask 時測試
 - `README.md`：更新使用說明、Troubleshooting 與 UI 操作說明
 
-Streamlit 與部署紀錄
----------------------
-- 新增 `homework2/streamlit_app.py`（2026-03-13）：此檔會把 `index_static.html` 的 CSS/JS 內聯後，使用 `st.components.v1.html` 嵌入在 Streamlit 應用中，方便在 Streamlit Cloud 上部署。已在 `homework2/requirements.txt` 加入 `streamlit`。
-- 本地測試：成功安裝套件並可啟動 Streamlit（指令 `streamlit run homework2/streamlit_app.py`），若在你的環境遇到啟動問題，請提供終端輸出以便我協助。
-- Pages / gh-pages：我曾用臨時資料夾向 `gh-pages` 推送 homework2 靜態檔案，但發現公開首頁顯示非 homework2 內容（另一個靜態站）。你可以選擇讓我強制覆寫 `gh-pages`（將公開 URL 指向 homework2），或改以 Streamlit Cloud 部署（較簡單且可直接支援互動）。
-
-清理與整理紀錄
-------------------
-- 已把 root 中的臨時資料夾（如 `gh-pages-publish`、`gh-pages-from-homework2`）移除或移入 `homework2`。 
-- `homework1_site` 已重新命名為 `homework1` 並被加入 `.gitignore`（保持本地未追蹤），以確保 homework1 的內容不會被誤推到遠端。
-
-本次更新與後續建議
---------------------
-- README 已更新為以 homework2 為主，並加入 Streamlit 的本地與部署說明。
-- 若你要我立即把 `gh-pages` 覆寫為 homework2 的靜態檔（公開 URL 直接指向 homework2 demo），我可以強制推送（會覆寫現有 gh-pages 分支內容）。
-- 若希望我幫你把 Streamlit app 移到 repo root（`streamlit_app.py`）並把 `streamlit` 加到 root `requirements.txt` 以方便 Streamlit Cloud 自動偵測，也可以告訴我，我會處理並推送。
+後續建議（可選）
 ------------------
 - 若你還看到不合理的 -10 值，我可以把 policy evaluation 改為直接解線性系統（數值上更精確，但需構建 P_pi 矩陣）。
 - 加入 UI 控制以調整 gamma / step reward，讓你能重現不同參考圖的設定。
@@ -69,19 +54,6 @@ Streamlit 與部署紀錄
 - 嘗試使用 `python -m flask run`：有時會在此環境中以不同方式啟動或退出，請以 `python app.py` 為第一排查步驟
 
 如果你需要我把這份更完整的紀錄以另一個格式匯出（例如 Markdown 或 JSON），或分成「問題/修正/驗證」三欄的 CSV，我可以幫你做。
-
----
-
-Finalization (2026-03-13)
--------------------------
-專案整理已完成：
-- 已移除與 homework1 重複或過時的說明，將 README 簡化為以 homework2 為主的最終版。
-- 已更新靜態 demo / index 檔案中的 Repository 連結為
-   https://github.com/tonyyoung-create/114-2-HW1-GridWorld
-- 已從 repo 中移除 root 的 `.gitignore`（依使用者要求）以及本地虛擬環境 `.venv`（若存在）。
-- 若需我幫忙把 GitHub Pages (gh-pages) 覆寫為 homework2 靜態站，或代為在 Streamlit Cloud 部署，請告知。
-
-此為最後整理狀態的註記，之後的版本若需回溯可參考上方的變更摘要與時間戳。
 
 ---
 結束。
