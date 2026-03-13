@@ -166,20 +166,20 @@ python -m streamlit run homework2/streamlit_app.py --server.port 8501
 - 伺服器部署（Render/Heroku 類似）：使用 `gunicorn`（例如 `gunicorn homework2.app:app`）。
 
 ## 常見問題（Troubleshooting）
-- 若看到大量 `-10.00`：開啟 Debug Overlay 檢查 self-loop 或 unreachable 的狀態。
-- 若 Flask 在啟動後馬上結束或瀏覽器無法連線，請執行 `python app.py` 並將終端 traceback 貼上以便我協助診斷。
-- 確認已啟動虛擬環境且已安裝依賴；如遇到防火牆阻擋，允許 Python 的本機連線。
+- 若看到大量 `-10.00`：請開啟 Debug Overlay 檢查是否存在 self-loop 或 unreachable 的格子。
+- 若 Flask 在啟動後馬上結束或瀏覽器無法連線，請執行 `python app.py`，並將終端的 traceback 儲存或貼於 issue/討論串中以供協作者協助診斷。
+- 確認已啟動虛擬環境且已安裝依賴；如遇到防火牆阻擋，請允許 Python 的本機連線或更換 port。
 
 ## 版控說明
-- `homework1/` 已從版本控制移除並列入 `.gitignore`（如需恢復請提供備份來源）。
-- 本 repo 只保留一份 README（此檔，位於 repo root）。
+- `homework1/` 已從版本控制移除並列入 `.gitignore`（如需恢復，請從本地備份或其他來源還原）。
+- 本 repo 只保留一份 README（此檔，位於 repo root）；`homework2/` 下保留一個簡短指向檔案以便瀏覽。
 
-## 我可以替你做的事
-- 將 `homework2/docs/` 發佈到 GitHub Pages（我會複製並推送到 `docs/` 或建立 `gh-pages` 分支）。
-- 幫你在 Streamlit Cloud 建立 deployment（需要授權/帳號設定）。
-- 新增 `run_local.ps1` 啟動腳本以自動啟動虛擬環境並啟動伺服器。
+## 可採取的後續操作（可選）
+- 將 `homework2/docs/` 發佈到 GitHub Pages：可將該內容複製到 repo 根的 `docs/` 並推送，或建立/更新 `gh-pages` 分支。
+- 在 Streamlit Cloud 建立部署：設定 App 檔為 `homework2/streamlit_app.py` 並使用 `homework2/requirements.txt`。
+- 新增 `run_local.ps1` 啟動腳本：建立腳本以自動啟動虛擬環境並啟動伺服器。
 
-如果要我執行其中任何一項，告訴我你的選擇，我會接著執行並回報結果。
+若要執行其中任一項，請在本專案建立 issue 或於討論中註明欲採取的操作，協作者即可依指示執行。
 
 ## Quick static preview (no Flask required)
 
