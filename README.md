@@ -181,8 +181,6 @@ python -m streamlit run homework2/streamlit_app.py --server.port 8501
 
 如果要我執行其中任何一項，告訴我你的選擇，我會接著執行並回報結果。
 
-If `flask run` immediately exits or you see "Connection refused", run `python app.py` to get full terminal logs.
-
 ## Quick static preview (no Flask required)
 
 If you only want to test the frontend interactions (grid / policy / evaluate) without running Flask:
