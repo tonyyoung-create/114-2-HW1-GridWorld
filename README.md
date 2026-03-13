@@ -73,13 +73,13 @@ python -m streamlit run homework2/streamlit_app.py --server.port 8501
 - 套件安裝問題：確認已啟動虛擬環境並使用 `pip install -r requirements.txt` 安裝依賴。
 - 端口被佔用或防火牆阻擋：檢查本機防火牆或嘗試更換 port。
 
-發佈或下一步（我可以代為執行）
+發佈或下一步（可選）
 ---------------------------------
-- 將靜態 demo 發佈到 GitHub Pages（我可以把 `homework2/docs/` 複製到 repo 根的 `docs/` 並推送）。
-- 部署到 Streamlit Cloud（把 App 指向 `homework2/streamlit_app.py`，並使用 `homework2/requirements.txt`）。
-- 新增簡單的 `run_local.ps1` 啟動腳本來自動啟用虛擬環境並啟動伺服器。
+- 將靜態 demo 發佈到 GitHub Pages：可將 `homework2/docs/` 的內容複製到 repo 根的 `docs/` 並推送，或建立/更新 `gh-pages` 分支。
+- 部署到 Streamlit Cloud：將 App 檔設定為 `homework2/streamlit_app.py`，並使用 `homework2/requirements.txt` 進行部署。
+- 新增 `run_local.ps1` 啟動腳本：建立一個腳本以自動啟動虛擬環境並啟動伺服器。
 
-如果你要我代為執行以上任一項（或想要更短的 中文 快速指南），告訴我你要哪一項，我會立即處理並回報結果。
+若要執行上述任一項，請在本專案開啟 issue 或於討論區註明所需操作，團隊即可依指示執行。
 快速啟動（建議使用 Flask）： 
 這會啟動一個簡單的檔案伺服器並載入 `index_static.html`，讓你能立刻測試 grid / policy / evaluate 等互動功能，而不需啟動 Flask。
 
