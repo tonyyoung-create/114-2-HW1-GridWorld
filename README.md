@@ -1,3 +1,85 @@
+# GridWorld Demo — 使用說明
+
+這是一個互動式 GridWorld 示範（作業 deliverable 放在 `homework2/`），適合想快速體驗格子世界策略與策略評估的使用者。
+
+快速預覽
+---------
+- 靜態 demo（已部署於 GitHub Pages，若有）： https://tonyyoung-create.github.io/114-2homework1/  （若無法連線，請使用本機預覽）
+
+快速開始（最短步驟，PowerShell）
+---------------------------------
+1. 進入 `homework2` 資料夾：
+
+```pwsh
+cd 'C:\Users\user\Desktop\深度強化學習\homework2'
+```
+
+2. （可選）建立並啟用虛擬環境，安裝必要套件：
+
+```pwsh
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+3. 啟動本機伺服器（推薦，用於互動與除錯）：
+
+```pwsh
+python app.py
+```
+
+打開瀏覽器並前往：
+
+    http://127.0.0.1:5002
+
+快速靜態預覽（不需安裝）
+------------------------
+如果你只想快速試試前端互動（不啟動 Flask）：
+
+```pwsh
+python -m http.server 8002
+# 然後開啟 http://127.0.0.1:8002/index_static.html
+```
+
+Streamlit（可選，雲端或本機）
+--------------------------------
+專案包含一個 Streamlit 包裝器，可在 Streamlit Cloud 或本機啟動：
+
+```pwsh
+python -m pip install -r homework2/requirements.txt
+python -m streamlit run homework2/streamlit_app.py --server.port 8501
+```
+
+然後開啟 http://localhost:8501
+
+重要頁面與檔案
+----------------
+- `homework2/index_static.html`：靜態預覽入口（可直接在瀏覽器開啟）
+- `homework2/templates/index.html`：Flask 版的頁面模板
+- `homework2/static/script.js`、`homework2/static/style.css`：前端互動程式與樣式
+- `homework2/app.py`：Flask 應用入口
+- `homework2/streamlit_app.py`：Streamlit 包裝器
+
+使用提示（給使用者）
+----------------------
+- 在 UI 可調整 Grid 大小（建議 5–9）。
+- 使用「Set Start / Set End / Toggle Obstacle」設定格子狀態。
+- 「Random Policy」與「Optimal Policy」可生成策略；點選「Evaluate Policy」查看每格 V(s)。
+- 若看到很多 `-10.00`，請開啟 Debug Overlay 檢查是否有 self-loop 或 unreachable（無法到達終點）的格子。
+
+遇到問題？（簡短排查）
+------------------------
+- 啟動後看不到網頁或連線被拒：在 `homework2` 資料夾執行 `python app.py`，把終端機的錯誤輸出複製貼上給我。
+- 套件安裝問題：確認已啟動虛擬環境並使用 `pip install -r requirements.txt` 安裝依賴。
+- 端口被佔用或防火牆阻擋：檢查本機防火牆或嘗試更換 port。
+
+發佈或下一步（我可以代為執行）
+---------------------------------
+- 將靜態 demo 發佈到 GitHub Pages（我可以把 `homework2/docs/` 複製到 repo 根的 `docs/` 並推送）。
+- 部署到 Streamlit Cloud（把 App 指向 `homework2/streamlit_app.py`，並使用 `homework2/requirements.txt`）。
+- 新增簡單的 `run_local.ps1` 啟動腳本來自動啟用虛擬環境並啟動伺服器。
+
+如果你要我代為執行以上任一項（或想要更短的 中文 快速指南），告訴我你要哪一項，我會立即處理並回報結果。
 快速啟動（建議使用 Flask）： 
 這會啟動一個簡單的檔案伺服器並載入 `index_static.html`，讓你能立刻測試 grid / policy / evaluate 等互動功能，而不需啟動 Flask。
 
