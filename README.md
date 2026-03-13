@@ -4,7 +4,7 @@
 
 快速預覽
 ---------
-- 靜態 demo（已部署於 GitHub Pages，若有）： https://tonyyoung-create.github.io/114-2homework1/  （若無法連線，請使用本機預覽）
+（若要快速在本機測試，請使用「快速靜態預覽」或啟動本機 Flask 伺服器。）
 
 快速開始（最短步驟，PowerShell）
 ---------------------------------
