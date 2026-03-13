@@ -4,6 +4,8 @@
 
 快速預覽
 ---------
+- 公開 Streamlit 示範（互動）： https://114-2-hw1-gridworld-tzcycskowp9jayn5ejmcbe.streamlit.app/
+  
 （若要快速在本機測試，請使用「快速靜態預覽」或啟動本機 Flask 伺服器。）
 
 快速開始（最短步驟，PowerShell）
