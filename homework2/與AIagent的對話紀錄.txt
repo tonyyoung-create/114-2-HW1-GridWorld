@@ -71,4 +71,17 @@ Streamlit 與部署紀錄
 如果你需要我把這份更完整的紀錄以另一個格式匯出（例如 Markdown 或 JSON），或分成「問題/修正/驗證」三欄的 CSV，我可以幫你做。
 
 ---
+
+Finalization (2026-03-13)
+-------------------------
+專案整理已完成：
+- 已移除與 homework1 重複或過時的說明，將 README 簡化為以 homework2 為主的最終版。
+- 已更新靜態 demo / index 檔案中的 Repository 連結為
+   https://github.com/tonyyoung-create/114-2-HW1-GridWorld
+- 已從 repo 中移除 root 的 `.gitignore`（依使用者要求）以及本地虛擬環境 `.venv`（若存在）。
+- 若需我幫忙把 GitHub Pages (gh-pages) 覆寫為 homework2 靜態站，或代為在 Streamlit Cloud 部署，請告知。
+
+此為最後整理狀態的註記，之後的版本若需回溯可參考上方的變更摘要與時間戳。
+
+---
 結束。
