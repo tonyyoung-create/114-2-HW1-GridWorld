@@ -7,112 +7,97 @@
 步驟概覽：
 
 1. 建議在 `homework2` 資料夾建立並啟動虛擬環境（選用）：
+# 114-2 HW1 / HW2 — GridWorld
+
+Live demo (optional): https://tonyyoung-create.github.io/114-2homework1/
+
+## 簡介
+本倉庫的主要 deliverable 放在 `homework2/`，包含一個可互動的 GridWorld demo（前端 HTML/JS + Flask 示範後端），並提供 Streamlit 包裝以便雲端部署。
+
+## 目標
+- 互動式 GridWorld：格子生成、起/終點設定、障礙、策略（隨機/貪婪）、策略評估與視覺化。
+- 支援本機開發（Flask）、靜態預覽（檔案伺服器）與 Streamlit 部署。
+
+## 快速啟動（推薦：Flask）
+1) 建立虛擬環境並安裝依賴（PowerShell）：
 
 ```pwsh
-# 建議流程（PowerShell）
+cd 'C:\Users\user\Desktop\深度強化學習\homework2'
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
 
-2. 啟動伺服器（兩種方式）：
-
-- 方式 A（直接執行應用程式檔案，推薦用於偵錯）
+2) 啟動 Flask（開發/除錯模式，推薦）：
 
 ```pwsh
-# 在 homework2 資料夾下
 python app.py
 ```
 
-這會啟動 Flask 的開發伺服器並在終端顯示請求日誌（例如：Running on http://127.0.0.1:5002）。如果 `python app.py` 正常執行，請在瀏覽器開啟：
+在瀏覽器開啟：http://127.0.0.1:5002
 
-		http://127.0.0.1:5002
-
-- 方式 B（使用 flask run）：
+替代（若你想使用 flask CLI）：
 
 ```pwsh
 $env:FLASK_APP = 'app.py'
 python -m flask run --port 5002
 ```
 
-方式 B 在某些環境下會因為啟動流程或環境變數問題而行為不同；若你遇到 `python -m flask run` 啟動後立即結束或瀏覽器顯示 "Connection refused"，請改用方式 A（`python app.py`）查看更完整的終端日誌。
+若 `flask run` 立刻退出或無法連線，改用 `python app.py` 可取得完整日誌。
 
-3. 快速靜態預覽（不需 Flask）
-
-若你只要測試前端互動（grid / policy / evaluate 等）而不需後端，使用：
+## 靜態預覽（快速測試，無需 Flask）
 
 ```pwsh
 python -m http.server 8002
+# 然後打開 http://127.0.0.1:8002/index_static.html
 ```
 
-然後在瀏覽器開啟：
-
-		http://127.0.0.1:8002/index_static.html
-
-主要 UI 與按鈕說明
-------------------
-
-# 114-2 HW1 / HW2 — GridWorld (homework2 is the primary deliverable)
-
-This repository contains the interactive GridWorld demo implemented for homework2. The authoritative project code and demo live under the `homework2/` folder. The repo was reorganized so the deliverable is cleanly located in `homework2`.
-
-Quick overview
---------------
-- Files of interest:
-  - `homework2/` — primary project (Flask app, static preview, Streamlit wrapper)
-  - `homework2/index_static.html` — static preview that can be served by a simple file server
-  - `homework2/templates/` and `homework2/static/` — frontend templates and assets
-  - `homework2/streamlit_app.py` — Streamlit wrapper that embeds the static demo
-
-How to run locally
--------------------
-Recommended: create a Python virtual environment in the `homework2/` folder and install dependencies.
+## Streamlit（可選）
+若要在 Streamlit Cloud 或本機測試 Streamlit wrapper：
 
 ```pwsh
-cd "C:\Users\user\Desktop\深度強化學習\homework2"
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
+python -m pip install -r homework2/requirements.txt
+python -m streamlit run homework2/streamlit_app.py --server.port 8501
 ```
 
-Start the Flask app (recommended for debugging):
+開啟 http://localhost:8501
 
-```pwsh
-python app.py
-```
+## 主要檔案
+- `homework2/` — 主專案資料夾（Flask app、靜態預覽、Streamlit wrapper）
+- `homework2/index_static.html` — 靜態預覽
+- `homework2/templates/index.html` — Flask 模板
+- `homework2/static/script.js`, `homework2/static/style.css` — 前端邏輯與樣式
+- `homework2/app.py` — Flask 開發應用
+- `homework2/streamlit_app.py` — Streamlit 包裝器
+- `homework2/requirements.txt` — 建議依賴（Flask、streamlit、gunicorn）
 
-# 114-2 HW1 / HW2 — GridWorld
+## 演算法要點
+- 環境為 deterministic GridWorld；step reward 預設 R = -1，discount γ = 0.9。
+- 為避免自我迴圈導致 V(s) 飽和：
+  - 生成策略時避免 self-loop（若可能）
+  - 使用 BFS 計算 distance 作為啟發初始值
+  - 使用 Gauss–Seidel（就地）更新以加速策略評估收斂
 
-Live demo (homework2): https://tonyyoung-create.github.io/114-2homework1/
+## 部署建議
+- GitHub Pages（靜態）：`homework2/docs/` 已含靜態副本。可將該內容複製到 repo 根 `docs/`，或發佈到 `gh-pages` 分支。
+- Streamlit Cloud（互動）：將 App 設為 `homework2/streamlit_app.py` 並使用 `homework2/requirements.txt`。
+- 伺服器部署（Render/Heroku 類似）：使用 `gunicorn`（例如 `gunicorn homework2.app:app`）。
 
-This repository contains the interactive GridWorld demo implemented for homework2. The authoritative project code and demo live under the `homework2/` folder. This README is the single, consolidated document for the project (it includes both root-level and folder-specific instructions).
+## 常見問題（Troubleshooting）
+- 若看到大量 `-10.00`：開啟 Debug Overlay 檢查 self-loop 或 unreachable 的狀態。
+- 若 Flask 在啟動後馬上結束或瀏覽器無法連線，請執行 `python app.py` 並將終端 traceback 貼上以便我協助診斷。
+- 確認已啟動虛擬環境且已安裝依賴；如遇到防火牆阻擋，允許 Python 的本機連線。
 
-## Quick start (recommended: Flask)
+## 版控說明
+- `homework1/` 已從版本控制移除並列入 `.gitignore`（如需恢復請提供備份來源）。
+- 本 repo 只保留一份 README（此檔，位於 repo root）。
 
-1. Create and activate a virtual environment inside `homework2` (PowerShell):
+## 我可以替你做的事
+- 將 `homework2/docs/` 發佈到 GitHub Pages（我會複製並推送到 `docs/` 或建立 `gh-pages` 分支）。
+- 幫你在 Streamlit Cloud 建立 deployment（需要授權/帳號設定）。
+- 新增 `run_local.ps1` 啟動腳本以自動啟動虛擬環境並啟動伺服器。
 
-```pwsh
-cd "C:\Users\user\Desktop\深度強化學習\homework2"
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
-
-2. Start the Flask app (recommended for debugging):
-
-```pwsh
-# from inside homework2
-python app.py
-```
-
-Then open http://127.0.0.1:5002 in your browser.
-
-Alternate: use `flask run` (may behave differently in some environments):
-
-```pwsh
-$env:FLASK_APP = 'app.py'
-python -m flask run --port 5002
-```
+如果要我執行其中任何一項，告訴我你的選擇，我會接著執行並回報結果。
 
 If `flask run` immediately exits or you see "Connection refused", run `python app.py` to get full terminal logs.
 
