@@ -1,8 +1,10 @@
 
-Live demo (homework2): https://tonyyoung-create.github.io/114-2homework1/
+# Homework2 — GridWorld (基於 homework2)
 
-快速啟動（建議使用 Flask）： 
-這會啟動一個簡單的檔案伺服器並載入 `index_static.html`，讓你能立刻測試 grid / policy / evaluate 等互動功能，而不需啟動 Flask。
+Live demo (homework2): https://tonyyoung-create.github.io/114-2homework1/  (如果已啟用 Pages)
+
+快速啟動（建議使用 Flask 或 Streamlit）：
+本 README 與資料夾均以 homework2 的內容為準（GridWorld demo、靜態預覽、Streamlit wrapper）。
 
 使用說明（詳細）
 ------------------
@@ -18,9 +20,9 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-2. 啟動伺服器（兩種方式）：
+2. 啟動伺服器（三種方式）：
 
-- 方式 A（直接執行應用程式檔案，推薦用於偵錯）
+- 方式 A（Flask — 直接執行應用程式檔案，推薦用於偵錯）
 
 ```pwsh
 # 在 homework2 資料夾下
@@ -52,7 +54,7 @@ python -m http.server 8002
 
 		http://127.0.0.1:8002/index_static.html
 
-主要 UI 與按鈕說明
+主要 UI 與按鈕說明（同 homework2/index_static.html）
 ------------------
 
 - Grid size：輸入 5–9（系統會 clamp 到此範圍），按「Generate Grid」產生 n x n 格子。
@@ -76,6 +78,21 @@ python -m http.server 8002
 
 - 如果看到大量 -10.00 值：請開啟 Debug Overlay 並檢查是否存在 self-loop 的 policy 或 unreachable 的格子。
 - 如果 `python -m flask run` 啟動後沒有持續監聽（瀏覽器顯示 Connection refused），請改用 `python app.py` 並貼上終端日誌給我協助分析。
+
+Streamlit (Embed) — 快速部署到 Streamlit Cloud
+-------------------------------------------------
+已提供 `homework2/streamlit_app.py`，可直接將靜態 demo 內嵌並在 Streamlit 中顯示：
+
+在本機測試：
+
+```pwsh
+python -m pip install -r homework2/requirements.txt
+python -m streamlit run homework2/streamlit_app.py --server.port 8501
+```
+
+然後開啟： http://localhost:8501
+
+在 Streamlit Cloud（或 Streamlit Community Cloud）部署時，請在部署設定中指定 app 檔案為 `homework2/streamlit_app.py`（或我也可幫你移到 repo root 以自動辨識）。
 
 進階建議
 -----------
