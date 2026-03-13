@@ -120,6 +120,8 @@ python -m http.server 8002
 3. 按 Evaluate Policy 檢查 Value Matrix
 4. 按 Show Optimal Path 檢視由 Start 沿策略到 Terminal 的路徑；或按 Animate Policy 播放 Agent 沿著路徑移動（可調整速度滑桿）
 
+# Live demo: https://tonyyoung-create.github.io/114-2-HW1-GridWorld/
+
 # HW1: GridWorld
 
 此資料夾包含作業 HW1 的 GridWorld demo（原名 HW1-2），已移植為一個簡單可互動的網頁應用。
