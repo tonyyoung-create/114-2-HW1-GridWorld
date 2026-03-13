@@ -1,0 +1,5 @@
+# keep local homework1 and venv out of repo
+homework1/
+.venv/
+__pycache__/
+
