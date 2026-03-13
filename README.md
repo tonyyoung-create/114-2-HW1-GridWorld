@@ -1,4 +1,5 @@
-Live demo: https://tonyyoung-create.github.io/114-2homework1/
+
+Live demo (homework2): https://tonyyoung-create.github.io/114-2homework1/
 
 快速啟動（建議使用 Flask）：
 這會啟動一個簡單的檔案伺服器並載入 `index_static.html`，讓你能立刻測試 grid / policy / evaluate 等互動功能，而不需啟動 Flask。
